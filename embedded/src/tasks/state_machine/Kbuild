@@ -1,0 +1,5 @@
+obj-y += identify.o
+obj-y += state_machine.o
+obj-y += start.o
+obj-y += return_to_base.o
+

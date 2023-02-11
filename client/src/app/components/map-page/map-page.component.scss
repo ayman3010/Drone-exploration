@@ -1,0 +1,81 @@
+.body {
+    min-height: 95vh;
+    background: #f4f7fa;
+}
+
+.header {
+    width: 100%;
+    height: 5rem;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.left-content {
+    width: 35%;
+    min-width: 10em;
+    height: 100%;
+    justify-content: center;
+    min-height:70vh;
+    display:flex;
+    flex-direction: column;
+}
+
+.camera-select {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-right: 1.5rem;
+}
+
+li {
+    padding: 2rem 1.5rem;
+    font-size: 24px;
+    color: #707282;
+    background-color: #ffff;
+    border-radius: 1rem;
+    transition: background-color .3s ease;
+    transition: color .3s ease;
+    cursor: pointer;
+
+    .cam-title {
+        font-weight: 500;
+        color: #707282;
+    }
+
+    .fa-solid {
+        margin-right: 1rem;
+    }
+
+}
+.pair-idx {
+    background-color: #f4f7fa;
+}
+
+.selected {
+    background-image: linear-gradient(90deg, #5d68e3, #569ffc);
+    color: #f3f3f3;
+    .cam-title {
+        color: #f3f3f3;
+    }
+}
+
+.map-display {
+    width: 65%;
+
+    canvas {
+        width: 100%;
+        aspect-ratio: 1/1;
+        border-radius: .5rem;
+        background-color: #dddfe7;
+        max-width: 80vh;
+    }
+}
+
+p {
+    color: #787878;
+    font-weight: 500;
+}

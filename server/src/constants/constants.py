@@ -1,0 +1,1 @@
+ADDRESSES = ['radio://0/80/2M/E7E7E7E782','radio://0/80/2M/E7E7E7E7E7']

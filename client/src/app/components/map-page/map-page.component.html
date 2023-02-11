@@ -1,0 +1,19 @@
+<div class="body">
+    <div class="header">
+        <h1>Cartes</h1>
+        <p>Différents affichages de la carte des drones.</p>
+    </div>
+    <div class="page-container">
+        <div class="left-content">
+            <ul class="camera-select">
+                <li *ngFor="let camera of cameras;let camIndex=index;" [ngClass]="{'pair-idx': camIndex % 2 !== 0, 'selected': camIndex === this.cameras.indexOf(this.selectedCam)}" (click)="selectCamera(camIndex)">
+                    <i class="fa-solid fa-video"></i>
+                    <span class="cam-title" >Camera {{ camera.name }}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="map-display">
+            <canvas #mapDisplay></canvas>
+        </div>
+    </div>
+</div>

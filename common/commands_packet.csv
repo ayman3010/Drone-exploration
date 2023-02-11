@@ -1,0 +1,4 @@
+identify , 0x00
+update , 0x01
+back_to_station , 0x02
+p2p , 0x03

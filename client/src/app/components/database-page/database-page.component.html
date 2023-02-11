@@ -1,0 +1,36 @@
+<div class="body">
+    <div class="header">
+        <h1>Base de données</h1>
+        <p>La données enregistrées des missions</p>
+    </div>
+    <div class="page-container">
+        <div class="right-content">
+            <div class="status-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre de drones</th>
+                            <th>Date de la mission</th>
+                            <th>Heure de la mission</th>
+                            <th>Durée</th>
+                            <th>Mode</th>
+                            <th>Distance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let mission of missionData">
+                            <td>{{mission.number_of_drones}}</td>
+                            <td>{{mission.date}}</td>
+                            <td>{{mission.time}}</td>
+                            <td>{{mission.flight_time}}</td>
+                            <td>{{missionMode(mission.flight_type)}}</td>
+                            <td>{{mission.flight_distance}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <canvas #mapDisplay></canvas>
+        </div>
+    </div>
+</div>

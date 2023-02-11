@@ -1,0 +1,18 @@
+# syntax=docker/dockerfile:1
+FROM python:3.10.6
+WORKDIR /server
+COPY ./server/tools/requirements.txt ./requirements.txt
+RUN pip install -r requirements.txt
+COPY ./server .
+RUN mkdir -p /etc/udev/rules.d
+RUN echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="1915", ATTRS{idProduct}=="7777", MODE="0664", GROUP="plugdev" \
+          # Bootloader \
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="1915", ATTRS{idProduct}=="0101", MODE="0664", GROUP="plugdev" \
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0664", GROUP="plugdev" ' > /etc/udev/rules.d/99-crazyradio.rules
+# CMD ["flask", "--app" , "src/app", "--debug", "run"]
+
+EXPOSE 80
+
+EXPOSE 6001
+
+CMD ["python3", "src/app.py"]

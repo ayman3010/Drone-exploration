@@ -1,0 +1,7 @@
+obj-y += state_machine/
+obj-y += receiver/
+obj-y += transmitter/
+obj-y += p2p/
+obj-y += battery/
+obj-y += signal_manager/
+

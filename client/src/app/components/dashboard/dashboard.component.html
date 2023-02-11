@@ -1,0 +1,79 @@
+<div class="body">
+    <div class="header">
+        <h1>Drones</h1>
+        <p>La liste des drones avec leurs status et leurs cartes</p>
+    </div>
+    <div class="page-container">
+        <div class="right-content">
+            <div class="status-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Batterie</th>
+                            <th>Status</th>
+                            <th>Position</th>
+                            <th>Orientation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let drone of dronesData">
+                            <td>Drone {{drone.id}}</td>
+                            <td><p class="battery" [class]="batteryStyle(drone.batteryLevel)">{{(drone.batteryLevel).toFixed(2)}}%</p></td>
+                            <td>{{droneStatus(drone.status)}}</td>
+                            <td>{{drone.x}} ; {{drone.y}}</td>
+                            <td>{{-drone.orientation}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="control-panel">
+                <div class="control-header">
+                    <h2>Panneau de commande</h2>
+                    <select [(ngModel)]="selectedDrone" name="drone-control-panel" ng-init="controlPanelDroneId='dronesData[0]'" *ngIf="dronesData.length > 0">
+                        <option *ngFor="let drone of dronesData" [ngValue]="drone" value={{drone.id}}>Drone {{drone.id}}</option>
+                    </select>
+                </div>
+                <div class="panel">
+                    <div *ngIf="dronesData.length > 0; else connectDroneButton">
+                        <button class="button" (click)="identify()">Identifier</button>
+                        <button class="button" (click)="start()">Lancer mission</button>
+                        <button class="button button-finish"(click)="finish()" >Terminer mission</button>
+                        <button class="button button-p2p"(click)="peerToPeer()">P2P</button>
+                        <button class="button"(click)="backToBase()">Retourner à la base</button>
+                        <button class="button button-p2p" (click)="simulate()">Simulation : {{this.isSimulation}}</button>
+                        <button class="button" (click)="startRequest()">Log Request</button>
+                    </div>
+                    <div>
+                        X: <input id="x" type="text">
+                        Y: <input id="y" type="text">
+                        L: <input id="width" type="text">
+                        H: <input id="height" type="text">
+                        <button class="button" (click)="sendZoneSelection()">SelectZone</button>
+                    </div>
+                    <ng-template #connectDroneButton>
+                        <button class="button button-p2p" (click)="connectDrones()">Connecter les drones</button>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="log">
+                <div class="log-header">
+                    <h2>Log</h2>
+                    <button (click)="download()">Télecharger Log</button>
+                </div>
+                <div class="panel">
+                    <p *ngFor="let msg of logMsgs">{{msg}}<br></p>
+                </div>
+            </div>
+        </div>
+        <div class="map-display">
+            <div class="drone-map-selector">
+                <select name="drone-map" id="drone-map" [(ngModel)]="selectedCamera" (ngModelChange)="onCameraChange($event)" *ngIf="cameras.length > 0">
+                    <option *ngFor="let camera of cameras" [ngValue]="camera" value="camera.drones[0].id">Camera {{camera.drones[0].id}}</option>
+                </select>
+            </div>
+            <canvas #mapDisplay></canvas>
+        </div>
+    </div>
+</div>
+
